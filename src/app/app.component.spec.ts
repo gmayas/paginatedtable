@@ -20,16 +20,16 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'angularcrud'`, () => {
+  it(`should have as title 'paginatedtable'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.componentInstance;
-    expect(app.title).toEqual('angularcrud');
+    expect(app.title).toEqual('paginatedtable');
   });
 
   it('should render title', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('.content span')?.textContent).toContain('angularcrud app is running!');
+    expect(compiled.querySelector('.content span')?.textContent).toContain('paginatedtable app is running!');
   });
 });

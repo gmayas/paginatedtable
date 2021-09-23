@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<div class="jumbotron-full">
+    <div class="card border-light text-white bg-dark my-2">
+        <div class="row">
+            <div class= "col-sm-9">
+                <h3 class="text-center mt-2">Usuarios.</h3>
+            </div>
+            <div class= "col-sm-3">
+                <div class="d-flex flex-row-reverse">
+                    <div class="p-2">
+                        <div class="input-group">
+                            <div class="input-group-prepend">
+                                <label class="input-group-text" for="inputGroupSelect01">Page size:</label>
+                            </div>
+                            <select (change)="onTableSizeChange($event)" class="custom-select">
+                                <option *ngFor="let size of tableSizes" [value]="size">
+                                    {{ size }}
+                                </option>
+                            </select>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-13">
+            <h5 *ngIf="loadingData"><span class="spinner-border mr-2"></span>Espere por favor ...
+            </h5>
+            <table class="table table-hover">
+                <thead>
+                    <tr>
+                        <!-- <th scope="col" type="hide">ID</th> -->
+                        <th scope="col">Usuario</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Password</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let user of Users | paginate : {
+                                itemsPerPage: tableSize,
+                                currentPage: page,
+                                totalItems: count }; let i = index" [class.active]="i == currentIndex">
+                        <!-- <td scope="row" type="hide">{{ user?.id_user }}</td> -->
+                        <td scope="row">{{ user?.name_user }}</td>
+                        <td scope="row">{{ user?.email_user }}</td>
+                        <td scope="row">{{ user?.password_user }}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="d-flex justify-content-center">
+                <pagination-controls previousLabel="Prev" nextLabel="Next" (pageChange)="onTableDataChange($event)">
+                </pagination-controls>
+            </div>
+        </div>
+    </div>
+    <div class="footer-copyright text-center text-white bg-dark">© {{yyyy}} Copyright:
+        <a> GMayaS C:\>Desarrollo en Sistemas.</a>
+    </div>
+</div>
