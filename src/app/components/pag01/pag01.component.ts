@@ -2,35 +2,33 @@ import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
 import { ToastrService } from 'ngx-toastr';
 import * as _ from "lodash";
-import { HttpClient } from '@angular/common/http';
 
 
 @Component({
-  selector: 'app-users',
-  templateUrl: './users.component.html',
-  styleUrls: ['./users.component.css']
+  selector: 'app-pag01',
+  templateUrl: './pag01.component.html',
+  styleUrls: ['./pag01.component.css']
 })
-export class UsersComponent implements OnInit {
-  //
-  page = 1;
-  count = 0;
-  tableSize = 6;
-  tableSizes = [6, 12, 18 , 24, 30];
-  currentIndex: any;
-  // Year
-  public yyyy = new Date().getFullYear();
+export class Pag01Component implements OnInit {
+    //
+    page = 1;
+    count = 0;
+    tableSize = 6;
+    tableSizes = [6, 12, 18 , 24, 30];
+    currentIndex: any;
+    // Year
+    public yyyy = new Date().getFullYear();
+  
+    // Users
+    public Users: any;
+    loadingData = false
 
-  // Users
-  public Users: any;
-  loadingData = false
-
-  constructor(public usersService: UsersService, private toastr: ToastrService, private http: HttpClient) {
-    // Llamado inicial de la funcion
-    this.getUsers();
-  }
+  constructor(public usersService: UsersService, private toastr: ToastrService) {
+     // Llamado inicial de la funcion
+     this.getUsers();
+   }
 
   ngOnInit(): void {
-   
   }
   // Función asincrona para obtener el listado de los usuarios
   async getUsers() {
@@ -53,7 +51,6 @@ export class UsersComponent implements OnInit {
       console.log('Error respose: ', e)
     }
   }
-
 
   async getUsersPag() {
     try {
@@ -82,5 +79,4 @@ export class UsersComponent implements OnInit {
     this.page = 1;
     this.getUsersPag();
   }  
-
 }
