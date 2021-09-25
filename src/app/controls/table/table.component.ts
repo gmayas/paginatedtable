@@ -1,8 +1,6 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild } from '@angular/core';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
-import { MatTableDataSource } from '@angular/material/table';
-
 @Component({
   selector: 'control-table',
   templateUrl: './table.component.html',
@@ -15,9 +13,10 @@ export class TableComponent implements OnInit, OnDestroy {
   _dataSource: any;
   headerColumns:any = [];
   orderBy: string = '';
+  @Input() public pageSizeOptions: number[] = [5, 10, 15, 25, 30 , 50, 100];
   @Input() public tableColumns: any;
   @Input() public selectable: boolean = false;
-  @Input() public pageSize: number = 25;
+  @Input() public pageSize: number = 5;
   @Input() public dataSize: number = 0;
   @Input() public totalPages: number = 0;
   @Input() public pageIdxSelected: number = 0;

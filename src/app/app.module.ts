@@ -11,10 +11,8 @@ import { ToastrModule } from 'ngx-toastr';
 import { NgxPaginationModule } from 'ngx-pagination';
 import { Pag01Component } from './components/pag01/pag01.component';
 import { Pag02Component } from './components/pag02/pag02.component';
-import { MatTableModule } from '@angular/material/table';
-import { MatPaginatorModule } from '@angular/material/paginator';
+import { MaterialModule } from './modules/material/material.module';
 import { TableComponent } from './controls/table/table.component';
-import { MatSortModule } from '@angular/material/sort';
 @NgModule({
   declarations: [
     AppComponent,
@@ -23,7 +21,7 @@ import { MatSortModule } from '@angular/material/sort';
     AboutComponent,
     Pag01Component,
     Pag02Component,
-    TableComponent
+    TableComponent 
   ],
   imports: [
     BrowserModule,
@@ -32,9 +30,7 @@ import { MatSortModule } from '@angular/material/sort';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgxPaginationModule,
-    MatTableModule,
-    MatPaginatorModule,
-    MatSortModule,
+    MaterialModule
   ],
   providers: [],
   bootstrap: [AppComponent]

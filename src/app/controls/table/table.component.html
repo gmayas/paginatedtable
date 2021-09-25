@@ -1,7 +1,6 @@
 <div>
     <table mat-table [dataSource]="_dataSource" class="mat-elevation-z8 table-100" matSort
-    matSortActive="{{orderBy}}" matSortDirection="desc"
-    >
+    matSortActive="{{orderBy}}" matSortDirection="desc">
   
     <ng-container *ngFor="let column of tableColumns">
       <ng-container *ngIf="column.campo!=null" matColumnDef="{{column.campo}}">
@@ -28,12 +27,10 @@
     </ng-container>
       <tr mat-header-row *matHeaderRowDef="headerColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: headerColumns;"></tr>
-  
       <tr class="mat-row" *matNoDataRow>
         <td class="mat-cell text-center" colspan="10">Sin Resultados <span *ngIf="search.length>0"> para "{{search}}"</span></td>
       </tr>
-  
   </table>
-  <mat-paginator #pag [length]="dataSize" [pageSize]="pageSize" [pageSizeOptions]="[5, 10, 25, 100]" (page)="page_OnChange($event)"></mat-paginator>
+  <mat-paginator #pag [length]="dataSize" [pageSize]="pageSize" [pageSizeOptions]="pageSizeOptions" (page)="page_OnChange($event)" aria-label="Select page" aria-label="Select page" showFirstLastButtons></mat-paginator>
   </div>
   
