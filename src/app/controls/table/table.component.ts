@@ -8,11 +8,11 @@ import { MatSort } from '@angular/material/sort';
 })
 export class TableComponent implements OnInit, OnDestroy {
 
-  _search: string = '';
+  _search: string | any= '' ;
   _searchDate: Date | any;
   _dataSource: any;
   headerColumns:any = [];
-  orderBy: string = '';
+  orderBy: string | any = '';
   @Input() public pageSizeOptions: number[] = [5, 10, 15, 25, 30 , 50, 100];
   @Input() public tableColumns: any;
   @Input() public selectable: boolean = false;
@@ -21,6 +21,7 @@ export class TableComponent implements OnInit, OnDestroy {
   @Input() public totalPages: number = 0;
   @Input() public pageIdxSelected: number = 0;
   @Input() public applySort: boolean = false;
+  @Input() public loadingData: boolean = false; 
   @Output() public selected: EventEmitter<any> = new EventEmitter();
   // protected data: MatTableDataSource<any>= new MatTableDataSource([]);
   @ViewChild(MatPaginator, { static: true }) paginator: MatPaginator | any;

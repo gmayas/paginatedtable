@@ -13,6 +13,8 @@ import { Pag01Component } from './components/pag01/pag01.component';
 import { Pag02Component } from './components/pag02/pag02.component';
 import { MaterialModule } from './modules/material/material.module';
 import { TableComponent } from './controls/table/table.component';
+import { FormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
@@ -30,7 +32,9 @@ import { TableComponent } from './controls/table/table.component';
     ToastrModule.forRoot(),
     BrowserAnimationsModule,
     NgxPaginationModule,
-    MaterialModule
+    MaterialModule,
+    FormsModule,
+    NgbModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -4,21 +4,85 @@
 <div class="jumbotron-full">
     <div class="card border-light text-white bg-dark my-2">
         <div class="row">
-            <mat-label class="text-center mat-label-26 mt-2">Usuarios.</mat-label>
+            <div class="col-sm-8">
+                <div class="text-center mat-label-26 mt-3">Usuarios:</div>
+            </div>
+            <div class="col-sm-4">
+                <div class="d-flex flex-row-reverse">
+                    <mat-form-field>
+                        <mat-label>Buscar</mat-label>
+                        <input matInput [(ngModel)]="searchValue" [name]="'search'" />
+                        <mat-icon matSuffix>search</mat-icon>
+                    </mat-form-field>
+                </div>
+            </div>
         </div>
     </div>
     <div class="row">
         <div class="col-lg-13">
-            <h5 *ngIf="loadingData"><span class="spinner-border mr-2"></span>Espere por favor ...
-            </h5>
-            <!-- <label>Buscar</label>
-            <input /> -->
-            <div class="lmn-scrollbar-x">
-                <control-table [search]="searchValue" [dataSource]="dataSource" [tableColumns]="columnas" [dataSize]="dataSize">
+            <div *ngIf="loadingData"><span class="spinner-border mr-2"></span>Espere por favor ...</div>
+            <div *ngIf="!loadingData" class="lmn-scrollbar-x">
+                <control-table [search]="searchValue" [dataSource]="dataSource" [tableColumns]="columnas"
+                    [dataSize]="dataSize">
                 </control-table>
             </div>
         </div>
-        <div class="footer-copyright text-center text-white bg-dark mat-label-16 mt-2">© {{yyyy}} Copyright:
-            <a> GMayaS C:\>Desarrollo en Sistemas.</a>
-        </div>
     </div>
+    <div class="footer-copyright text-center text-white bg-dark mat-label-16 mt-2">© {{yyyy}} Copyright:
+        <a> GMayaS C:\>Desarrollo en Sistemas.</a>
+    </div>
+    <ng-template #accionTemplate let-columnVal="item">
+        <a (click)="editUser(columnVal)">
+            <i class="btn btn-warning btn-sm ml-2" data-toggle="tooltip" data-placement="top" title="Editar"
+                data-original-title="Editar">
+                <mat-icon>edit</mat-icon>
+            </i>
+        </a>
+        <a (click)="setInfoUser(columnVal)">
+            <i type="button" class="btn btn-info btn-sm ml-2" data-toggle="tooltip" data-placement="top"
+                title="Ver datos" data-original-title="Ver datos">
+                <mat-icon>visibility</mat-icon>
+            </i>
+        </a>
+        <a (click)="open(content, columnVal)">
+            <i class="btn btn-danger btn-sm ml-2" data-toggle="tooltip" data-placement="top" title="Eliminar"
+                data-original-title="Eliminar">
+                <mat-icon>delete_forever</mat-icon>
+            </i>
+        </a>
+    </ng-template>
+    <!-- Modal -->
+    <ng-template #content let-c="close" let-d="dismiss">
+        <div class="modal-header">
+            <h4 class="modal-title" id="modal-basic-title">Aviso de Yaydoo.</h4>
+            <button type="button" class="close" aria-label="Close" (click)="d('Cross click')">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body card text-white  bg-danger">
+            <h4 class="card-title">Advertencia.</h4>
+            <label class="card-text">¿Está completamente seguro de eliminar a este usuario?</label>
+            <div class="d-flex w-100">
+                <label class="mb-1"><strong>Id User:</strong></label>
+                <label class="mb-1 ml-1"><strong>{{ delUserSel?.id_user }}</strong></label>
+            </div>
+            <div class="d-flex w-100">
+                <label class="mb-1"><strong>Name User:</strong></label>
+                <label class="mb-1 ml-1"><strong>{{ delUserSel?.name_user }}</strong></label>
+            </div>
+            <div class="d-flex w-100">
+                <label class="mb-1"><strong>Email User:</strong></label>
+                <label class="mb-1 ml-1"><strong>{{ delUserSel?.email_user }}</strong></label>
+            </div>
+            <p class="card-text mb-1">Nota: Si da clic en Aceptar, elimina por completo la informacion relacionada con
+                el usuario.</p>
+        </div>
+        <div class="modal-footer">
+            <button [disabled]="loading || confirm" type="submit" class="btn btn-danger"
+                (click)="deleteUser(); c('Delete click')" ngbAutofocus>
+                <span *ngIf="loading" class="spinner-border spinner-border-sm mr-1"></span>Aceptar</button>
+            <button [disabled]="loading" type="button" class="btn btn-secondary"
+                (click)="d('Cross click')">Cancelar</button>
+        </div>
+    </ng-template>
+</div>
